@@ -2,6 +2,7 @@ using PadreScraper;
 using PuppeteerSharp;
 using PuppeteerSharp.Input;
 using System.Text.Json;
+using ebala;
 
 namespace PadreScraperApp;
 
@@ -29,7 +30,8 @@ class Program
         }
 
         // --- ЭТАП 2: ЗАПУСК ПОСТОЯННОГО МОНИТОРИНГА ---
-        await RunRealTimeMonitoringAsync(capturedState);
+        var bot = new TelegramBotService();
+        await RunRealTimeMonitoringAsync(capturedState, bot);
     }
 
     // ===================================================================================
@@ -39,7 +41,7 @@ class Program
     /// <summary>
     /// Запускает фоновый браузер, внедряет состояние и входит в бесконечный цикл для мониторинга новых записей БЕЗ перезагрузки страницы.
     /// </summary>
-    private static async Task RunRealTimeMonitoringAsync(BrowserState state)
+    private static async Task RunRealTimeMonitoringAsync(BrowserState state, TelegramBotService bot)
     {
         Console.WriteLine("\n--- Этап 2: Запуск мониторинга в реальном времени ---");
 
@@ -103,6 +105,7 @@ class Program
                     Console.WriteLine($"--- ОБНАРУЖЕНЫ НОВЫЕ ЗАПИСИ ({newCoins.Count}) ---");
                     foreach (var coin in newCoins)
                     {
+                        await bot.ProceedNewAlphaCall(coin.ToString());
                         Console.WriteLine(coin.ToString());
                     }
                     Console.ResetColor();
