@@ -11,7 +11,7 @@ class Program
     // Константы для конфигурации
     private const string BaseUrl = "https://trade.padre.gg";
     private const string TargetUrl = "https://trade.padre.gg/trenches";
-    private const string LoginSuccessSelector = "#button-top-bar-options-popover";
+    private const string LoginSuccessSelector = "#buton-top-bar-options-popover";
     private const string HeadlessSuccessSelector = "#button-solana-global-wallet-select";
     private const string DbName = "firebaseLocalStorageDb";
 
