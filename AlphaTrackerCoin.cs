@@ -13,7 +13,7 @@ public class AlphaTrackerCoin
     {
         return $"--- Монета: {Name ?? "N/A"} ---\n" +
                $"  Упомянута в: {MentionedInGroup ?? "N/A"}\n" +
-               $"  Когда: {TimeAgo ?? "N/A"}\n" +
-               $"  Ссылка: {Link ?? "N/A"}\n";
+               $"  Когда: {TimeAgo ?? "N/A"}" +
+               $"  Ссылка: {Link ?? "N/A"}";
     }
 }
